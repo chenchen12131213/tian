@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人介绍</title>
+    <style>
+        body{
+            background: linear-gradient(to right,#99f, #f99);
+            background-image: url(bg.jpg);
+        }
+        .content-head {
+            translate: 1s;
+        }
+
+        .content-main {
+            /* 样式 */
+            background: linear-gradient(to right, #fbc2eb, #a6c1ee);
+            width: 800px;
+            height: 500px;
+            border-radius: 20px;
+            box-shadow: 0 0 0 8px rgba(255, 255, 255, 0.2);
+            overflow: hidden;
+            z-index: 11;
+            transition: .5s;
+            /* 位置 */
+            position: absolute;
+            margin: auto;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+        }
+        .content-main:hover{
+            box-shadow: 0 0 10px rgba(0, 0, 0, .3);
+            transform: translate(1px,0);
+        }
+
+        .content-head {
+            width: 250px;
+            transition: 1s;
+            z-index: 999;
+            /* 位置 */
+            position: absolute;
+            margin: auto;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+        }
+
+        .content-head-box {
+            /* 样式 */
+            background-color: #fff;
+            width: 250px;
+            height: 250px;
+            overflow: hidden;
+            position: absolute;
+            border-radius: 50%;
+            /* 位置 */
+            position: absolute;
+            margin: auto;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+        }
+
+        /* 设置图片显示位置 */
+        .content-head img {
+            position: absolute;
+            left: -70px;
+            top: -30px;
+        }
+
+        /* 鼠标移入效果 */
+        .content-main:hover .content-head {
+            transition: 1s;
+            transform: translate(-200px, -50px);
+        }
+
+        /* 头像框文字区位置*/
+        .content-head-c {
+            width: 120px;
+            position: absolute;
+            opacity: 0;
+            transition: .5s;
+            bottom: 40px;
+            margin: 0 auto;
+            left: 0;
+            right: 0;
+        }
+
+        .content-main:hover .content-head .content-head-c {
+            transition: 1s .5s;
+            opacity: 1;
+        }
+
+        /* 头像框文字字体样式 */
+        .content-head-c a {
+            text-decoration: none;
+            color: #fff;
+            font: 900 40px '';
+        }
+
+        /* 内容块样式 */
+        .content-c {
+            position: absolute;
+            right: 0;
+            width: 350px;
+            top: 30px;
+            opacity: 0;
+        }
+
+        .content-c h2 {
+            text-decoration: none;
+            color: #fff;
+            font: 900 55px '';
+        }
+
+        .content-c span {
+            margin-top: 10px;
+            color: #fff;
+            font: 500 23px '';
+            position: absolute;
+        }
+
+        /* 鼠标移入时显示内容块 */
+        .content-main:hover .content-c {
+            transition: 1s .5s;
+            opacity: 1;
+        }
+
+        /* 背景样式块 */
+        .c {
+            position: absolute;
+            top: -130px;
+            right: -240px;
+        }
+
+        .content-main:hover .c div {
+            /* 设置延迟动画 */
+            transition: .5s calc(var(--i)*.1s);
+            /* 移动的轨迹 */
+            transform: rotateZ(220deg) translate(-200px, 400px);
+        }
+
+        .d,
+        .e {
+            position: absolute;
+            right: calc(var(--i)*100px);
+            width: calc(var(--w)*40px);
+            height: 500px;
+            overflow: hidden;
+            border-radius: 100px;
+            transform: rotateZ(220deg) translate(0, 0);
+            background: rgb(240, 220, 150);
+            transition: .5s .5s;
+        }
+
+        .d:nth-child(2) {
+            background: rgb(240, 190, 230);
+        }
+
+        .d:nth-child(3) {
+            background: #bfa;
+        }
+
+        .e {
+            left: -470px;
+            top: -140px;
+            width: 70px;
+            background-color: rgb(90, 220, 150);
+        }
+
+        /* 
+
+        导航框部分 
+        
+        */
+        /* 字体样式 */
+        .nav-info {
+            color: #fff;
+            font: 900 20px '';
+            text-align: center;
+        }
+
+        .nav-head .nav-info {
+            width: 80px;
+            height: 25px;
+        }
+
+        .nav-b .nav-info {
+            width: 50px;
+        }
+
+        /* 主块 */
+        .nav-box {
+            /* 鼠标移入变手 */
+            cursor: pointer;
+            background-color: #00f0f0;
+            /* 设置位置 */
+            position: fixed;
+            width: 120px;
+            border-radius: 60px;
+            top: 19%;
+            margin-left: 1300px;
+            right: 480px;
+            text-align: center;
+            transition: .5s;
+        }
+        /* 主块鼠标移入改变样式 */
+        .nav-box:hover {
+            box-shadow: 0 0 0 10px rgba(255, 255, 255, .3);
+            background-color: #41F7D8;
+            transform: translate(80px,0);
+        }
+
+        /* 头块 */
+        .nav-head {
+            width: 120px;
+            height: 120px;
+            position: relative;
+            border-radius: 50%;
+        }
+        /* 调整字体居中 */
+        .nav-head .nav-info,
+        .nav-b .nav-info {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            margin: auto;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+        }
+
+        .nav-b .nav-info {
+            height: 25px;
+            z-index: 10;
+        }
+
+        .nav-b {
+            text-align: center;
+            width: 120px;
+            height: 120px;
+            position: relative;
+            opacity: 0;
+        }
+
+        /* .nav-b:hover{
+            box-shadow: 0 0 0 10px rgba(255, 255, 255, .3);
+        } */
+        .nav-box .nav-b {
+            border-radius: 15px;
+        }
+
+        .nav-info {
+            position: relative;
+        }
+
+        .nav-img {
+            opacity: 0;
+            position: relative;
+            left: 130px;
+            width: 120px;
+            height: 100px;
+        }
+
+        .nav-b span {
+            position: relative;
+            top: 48px;
+        }
+
+        span {
+            color: #fff;
+            font: 900 20px '';
+        }
+        /* 导航框项目背景板 */
+        .nav-back{
+            width: 100px;
+            height: 100px;
+            background-color: #72FBBC;
+            position: absolute;
+            left: 10px;
+            top: 10px;
+            border-radius: 50%;
+            opacity: 0;
+            transition: .8s;
+            box-shadow: 0 0 10px rgba(0, 0, 0, .3);
+        }
+        
+
+        /* 设置过渡 */
+        .nav-box .nav-b {
+            height: 0px;
+        }
+
+        .nav-box:hover .nav-b {
+            height: 120px;
+        }
+
+        .nav-b,
+        .nav-img {
+            transition: .5s;
+        }
+
+        .nav-box:hover .nav-b {
+            opacity: 1;
+        }
+
+        .nav-b:hover .nav-img,
+        .nav-b:hover {
+            opacity: 1;
+        }
+        .nav-b:hover .nav-back{
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 主块 -->
+    <div class="content-main">
+        <!-- 头块 -->
+        <div class="content-head">
+            <div class="content-head-box">
+                <img src="tx.jpg" alt="">
+            </div>
+            <div class="content-head-c">
+                <a href="#">田程豪</a>
+            </div>
+        </div>
+        <!-- 内容块 -->
+        <div class="content-c">
+            <h2>个人介绍</h2>
+            <span>
+                计科2021级在校大学生一枚</br><br />
+                性别：男&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;爱好：女<br /><br />
+                立志在前端干一番事业<br /><br />
+                Keep going!!
+            </span>
+        </div>
+        <!-- 背景样式块 -->
+        <div class="c">
+            <!-- --i是用来计算平面圆柱的动效延迟和距离的--w则是用来计算平面圆柱的宽度 -->
+            <div class="d" style="--i:1;--w:1.5"></div>
+            <div class="d" style="--i:2;--w:1.6"></div>
+            <div class="d" style="--i:3;--w:1.4"></div>
+            <div class="d" style="--i:4;--w:1.7"></div>
+            <div class="e" style="--i:1"></div>
+        </div>
+    </div>
+    <!-- 导航框部分 -->
+    <div class="nav-box">
+        <div class="nav-head">
+            <div class="nav-info">
+                联系方式
+            </div>
+        </div>
+        <div class="nav-b">
+            <div class="nav-info">
+                电话
+            </div>
+            <!-- 背景块 -->
+            <div class="nav-back"></div>
+            <div class="nav-img">
+                <span>
+                    18227587051
+                </span>
+            </div>
+        </div>
+        <div class="nav-b">
+            <div class="nav-info">
+                QQ
+            </div>
+            <!-- 背景块 -->
+            <div class="nav-back"></div>
+            <div class="nav-img">
+                <img src="QQ.jpg" alt="">
+            </div>
+        </div>
+        <div class="nav-b">
+            <div class="nav-info">
+                微信
+            </div>
+            <!-- 背景块 -->
+            <div class="nav-back"></div>
+            <div class="nav-img">
+                <img src="微信.jpg" alt="">
+            </div>
+        </div>
+        <div class="nav-b">
+            <div class="nav-info">
+                邮箱
+            </div>
+            <!-- 背景块 -->
+            <div class="nav-back"></div>
+            <div class="nav-img">
+                <span>
+                    1430273730@qq.com
+                </span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
